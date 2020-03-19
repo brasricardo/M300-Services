@@ -97,6 +97,8 @@ Ich habe mich dazu entschieden eine Umgebung mit zwei virtuelle Maschinen zu ers
 Die Dokumentation zu diesem Projekt kann [hier](https://github.com/brasricardo/M300-Services/tree/master/lb02) gefunden werden.
 
 ## 5. Leistungsbeurteilung 03 (LB03)
-Hier können wir unser eigenes Projekt, welches bei LB02 durchgeführt wurde, mit einem Gateway erweitern und den Gateway mit einem (Cloud) Dienst verbinden.
+Hier können wir ein eigenes Projekt "Virtuelle Maschine mit einem Docker-File automatisieren nach eigener Wahl". Die Projektwahl musste einfach dem [Bewertungsraster](https://bscw.tbz.ch/bscw/bscw.cgi/d31406123/BewertungsrasterLB3.pdf) entsprechen.
 
-Die Dokumentation zu diesem Projekt kann [hier](https://github.com/Wind-net/M242-IOT/tree/master/lb03) gefunden werden.
+
+
+Die Dokumentation zu diesem Projekt kann [hier](https://github.com/brasricardo/M300-Services/tree/master/lb03) gefunden werden.
