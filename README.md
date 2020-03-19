@@ -9,22 +9,30 @@ Das Modul 300 dreht sich rund um Plattformübergreifende Dienste. Genauere Modul
 ## 2. Information
 
 ### 2.1 Github
-Der IoTKit ist ein NXP FRDM-K64F Board kompatibles Board.
+GitHub ist ein Git-Repository-Hosting-Dienst, aber er fügt viele seiner eigenen Funktionen hinzu. Während Git ein Befehlszeilenwerkzeug ist, bietet GitHub eine webbasierte grafische Schnittstelle. Es bietet auch eine Zugriffskontrolle und verschiedene Funktionen für die Zusammenarbeit, wie z.B. ein Wiki und grundlegende Aufgabenverwaltungstools für jedes Projekt.
 
-Das Board besteht aus einer Kombination zwischen des NXP FRDM-K64F Board und einzelner Shields. Aus diesem Grund sind Pin's doppelt belegt und wo dies der Fall ist kann nur eine Funktion genutzt werden.
-
-![IoTKitV3 K64F Board](IoTKit.png)
+Die Hauptfunktionalität von GitHub ist die "Gabelung" - das Kopieren eines Repositorys von einem Benutzerkonto auf ein anderes. Dies ermöglicht es Ihnen, ein Projekt, auf das Sie keinen Schreibzugriff haben, unter Ihrem eigenen Konto zu ändern. Wenn Sie Änderungen vornehmen, die Sie freigeben möchten, können Sie eine Benachrichtigung, die als "Pull-Anfrage" bezeichnet wird, an den ursprünglichen Besitzer senden. Dieser kann dann mit einem Klick auf eine Schaltfläche die in Ihrem Repo gefundenen Änderungen mit dem ursprünglichen Repo zusammenführen.
 
 
 ### 2.2 Github Client
 
+Ein Git-Client ist eine Software zur Arbeit mit Git-Repositories, sowohl remote als auch lokal.
 
+Mit Repository meine ich entweder einen lokalen Code-Speicher, mit dem Sie zusammen mit seinen Versionen, Tags und Zweigen arbeiten, oder einen entfernten Code-Speicher, aus dem ein Team von Entwicklern Änderungen schiebt und abzieht.
+
+Das Standard-"git"-Softwarepaket ist der offensichtlichste Client. Die meisten git ui-Clients benutzen es als ihr zugrundeliegendes Werkzeug, um mit git-Repositories zu arbeiten.
 
 ### 2.3 Virtual Box
 
+VirtualBox ist eine Open-Source-Software zur Virtualisierung der x86-Computerarchitektur. Sie fungiert als Hypervisor und erstellt eine VM (virtuelle Maschine), in der der Benutzer ein anderes Betriebssystem ausführen kann.
+
 ### 2.4 Vagrant
 
+Vagrant ist eine freie Ruby-Andwendung, welche es das Erstellen und Verwalten virtueller Maschinen ermöglicht. Einfache Softwareverteilung z.B. in der Software- und Webentwicklung ist eine der Stärken von Vagrant. Es dient ebenfalls als Wrapper zwischen Virtualisierungssoftware wie z.B. Virtual Box, VMWare, usw.
+
 ### 2.5 Visual Studio Code
+
+Visual Studio Code ist eine Software, welche als source code editor gebraucht wird. Das spezielle an diesem Editor ist, dass es eine menge von verschiedenen Programmiersprachen wie z.B. Java, Javasprict, C++, usw. unterstützt.
 
 ## 3. Leistungsbeurteilung 01 (LB01)
 Diese Beurteilung beinhaltet keine Dokumente, da es sich hier um eine Theorieprüfung handelt.
