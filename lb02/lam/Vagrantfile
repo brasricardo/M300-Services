@@ -58,7 +58,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		sudo sed -i '15iSSLCertificateFile /etc/apache2/ssl/apache.cert' /etc/apache2/sites-enabled/000-default.conf
 		sudo sed -i '16iSSLCertificateKeyFile /etc/apache2/ssl/apache.key' /etc/apache2/sites-enabled/000-default.conf
 
-		sed -i 's/<VirtualHost *:80>/<VirtualHost *:433>/g' /etc/apache2/sites-enabled/000-default.conf
+		sudo sed -i '1s/.*/<VirtualHost *:433>/' /etc/apache2/sites-enabled/000-default.conf
 
 		sudo sed -i '1i<VirtualHost *:80>' /etc/apache2/sites-enabled/000-default.conf
 		sudo sed -i '2iServerName example.com' /etc/apache2/sites-enabled/000-default.conf
