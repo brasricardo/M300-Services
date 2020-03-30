@@ -69,11 +69,9 @@ Der Inhalt des Vagrantfiles (Konfiguration) kann grob unter dem Punkt 2.Konfigur
 
 Damit ich mein Projekt realisieren konnte musste ich VirtualBox installieren für die Virtualisierung einer Maschine, welche mithilfe von Vagrant erstellt werden würde. VirtualBox konnte ich ganz einfach über https://www.virtualbox.org/ herunterladen und dann mit einem GUI installieren. Nach der Installation musste ich keine weitere Schritte in VirtualBox vornehmen, da sich Vagrant um alles kümmerte.
 
-
-
 ### 1.8 Visual Studio Code
 
-Visual Studio Code ist eine Software, welche als source code editor gebraucht wird. Das spezielle an diesem Editor ist, dass es eine menge von verschiedenen Programmiersprachen wie z.B. Java, Javasprict, C++, usw. unterstützt.
+Visual Studio Code ermöglicht es mir mein Vagrant- oder die README-Files ganz einfach über einen Code-Editor übersichtlich und gut zu gestalten und schreiben. 
 
 ## 3. Leistungsbeurteilung 01 (LB01)
 Diese Beurteilung beinhaltet keine Dokumente, da es sich hier um eine Theorieprüfung handelt.
