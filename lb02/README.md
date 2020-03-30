@@ -17,11 +17,17 @@ Für die Durchführung meiner LB02 habe ich folgende Dienste genützt:
 
 ![Netzwerkplan LB02](Netzwerkplan_M300.png)
 
-### 1.3 Virtual Box
+### 1.3 GitHub.com
 
-Damit ich mein Projekt realisieren konnte musste ich VirtualBox installieren für die Virtualisierung einer Maschine, welche mithilfe von Vagrant erstellt werden würde. VirtualBox konnte ich ganz einfach über https://www.virtualbox.org/ herunterladen und dann mit einem GUI installieren. Nach der Installation musste ich keine weitere Schritte in VirtualBox vornehmen, da sich Vagrant um alles kümmerte.
+Als alles erstes habe ich unter https://github.com einen Account mit meiner Schuladresse (ricardo.bras@edu.tbz.ch) erstellt. Danach wurde ich von GitHub durch eine Konfiguration von GitHub durchgeführt. Diese Bestand unter anderem aus dem Erstellen meines ersten Repository "brasricardo\M300-Services". Nachdem die Konfiguration vollendet war habe ich mein Account noch zu einem Pro-Account heraufgestuft, mithilfe der Schuladresse konnte ich dies kostenlos machen.
 
-### 1.4 Vagrant
+### 1.4 GitHub Desktop
+
+Ich habe von GitHub Desktop per Zufall über eine Online-Anleitung zu Vagrant und GitHub zum ersten mal gehört. Da ich diese Features noch interessant fand habe ich es mir heruntergeladen und getestet. Die Software ist sehr nützlich da man vieles Verknüpfen kann, wie z.B. Visual Studio Code. Man kann mit nur einem Klick das ganze Repository auf Visual Studio Code öffnen und direkt dort bearbeiten. Nachdem man es dort bearbeitet hat kann man die Files speichern und wieder zu GitHub Desktop wechseln dieser hat dann gemerkt, dass es Änderungen in den Files gab und zeigt diese an mit einem "Commit-Button". Mit diesem kann man dann die Änderungen "Commiten" und dann noch "pullen", damit diese dann auch im Online-Repo geändert werden. Die Software zeigt ebenfalls an, falls sich etwas Online geändert hat, welches sich lokal noch nicht hat und zeigt dann einen "Push-Button" an, mit dem man die Online-Änderungen auf das lokale Repository speichern kann. 
+
+### 1.5 Git-Client
+
+### 1.6 Vagrant
 
 Ich habe gelernt, dass mithilfe von Vagrant die Installation und erst Konfiguration von VMs sehr einfach und unkompliziert funktionieren kann. Damit ich Vagrant nutzen konnte habe ich es von https://www.vagrantup.com/ heruntergeladen und auf meinem Client installiert. Nachdem die Installation abgeschlossen war konnte man bereits loslegen. Ich habe in mein Verzeichnis gewechselt, welches sich unter C:\Users\Ricardo\M300 befindet. Dieses Verzeichnis ist ein "Clone" meines GitHub-Repository. 
 
@@ -32,7 +38,27 @@ $ vagrant init ubuntu/xenial64        #Vagrantfile erzeugen
 $ vagrant up --provider virtualbox    #Virtuelle Maschine erstellen & starten
 ```
 
-### 1.5 Visual Studio Code
+Sobald die Installation zu ende ist und keine Fehler vorgekommen sind, läuft die Maschine und man kann per CMD eine SSH-Verbindung zu dieser herstellen.
+
+```
+vagrant ssh
+```
+
+Falls man eine bereits erstellte VM löschen möchte kann dies ganz einfach mit folgendem Befehl durchgeführt werden:
+
+```
+vagrant destroy -f
+```
+
+Der Inhalt des Vagrantfiles (Konfiguration) kann grob unter dem Punkt 2.Konfiguration und https://github.com/brasricardo/M300-Services/tree/master/lb02/lam gefunden werden.
+
+### 1.7 Virtual Box
+
+Damit ich mein Projekt realisieren konnte musste ich VirtualBox installieren für die Virtualisierung einer Maschine, welche mithilfe von Vagrant erstellt werden würde. VirtualBox konnte ich ganz einfach über https://www.virtualbox.org/ herunterladen und dann mit einem GUI installieren. Nach der Installation musste ich keine weitere Schritte in VirtualBox vornehmen, da sich Vagrant um alles kümmerte.
+
+
+
+### 1.8 Visual Studio Code
 
 Visual Studio Code ist eine Software, welche als source code editor gebraucht wird. Das spezielle an diesem Editor ist, dass es eine menge von verschiedenen Programmiersprachen wie z.B. Java, Javasprict, C++, usw. unterstützt.
 
