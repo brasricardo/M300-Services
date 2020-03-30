@@ -25,7 +25,20 @@ Als alles erstes habe ich unter https://github.com einen Account mit meiner Schu
 
 Ich habe von GitHub Desktop per Zufall über eine Online-Anleitung zu Vagrant und GitHub zum ersten mal gehört. Da ich diese Features noch interessant fand habe ich es mir heruntergeladen und getestet. Die Software ist sehr nützlich da man vieles Verknüpfen kann, wie z.B. Visual Studio Code. Man kann mit nur einem Klick das ganze Repository auf Visual Studio Code öffnen und direkt dort bearbeiten. Nachdem man es dort bearbeitet hat kann man die Files speichern und wieder zu GitHub Desktop wechseln dieser hat dann gemerkt, dass es Änderungen in den Files gab und zeigt diese an mit einem "Commit-Button". Mit diesem kann man dann die Änderungen "Commiten" und dann noch "pullen", damit diese dann auch im Online-Repo geändert werden. Die Software zeigt ebenfalls an, falls sich etwas Online geändert hat, welches sich lokal noch nicht hat und zeigt dann einen "Push-Button" an, mit dem man die Online-Änderungen auf das lokale Repository speichern kann. 
 
+![GitHub Desktop Commit](Git-Hub_Desktop-Commit.PNG)
+
+![GitHub Desktop Push](Git-Hub_Desktop-Push.PNG)
+
 ### 1.5 Git-Client
+
+Mit Git-Client konnte ich die Git-Befehle auf meinem lokalen Client auf einem Bash eingeben. Diese Bash ist nichts anderes als eine Linux-Bash mit der man Git-Befehle ausführen kann. Ich habe sie nicht oft gebraucht, da ich hauptsächlich mit GitHub Desktop gearbeitet habe. Jedoch habe ich sie am Anfang für die Erstellung eines Private & Public Key gebraucht, welches ich dann mit GitHub verbunden habe, damit man sich nicht immer anmelden muss
+
+```
+$  ssh-keygen -t rsa -b 4096 -C "beispiel@beispiel.com"     #Danach der Konfiguration folgen und abschliessen.
+```
+
+Nachdem die Keys erstellt wurden musste ich den Inhalt des Public-Keys kopieren und dies in meinem GitHub Profil unter Settings und SSH & GPS Keys einfügen und abspeichern.
+
 
 ### 1.6 Vagrant
 
