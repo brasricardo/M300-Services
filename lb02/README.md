@@ -2,27 +2,35 @@
 
 ## 1. Information
 
-### 1.1 Github
-GitHub ist ein Git-Repository-Hosting-Dienst, aber er fügt viele seiner eigenen Funktionen hinzu. Während Git ein Befehlszeilenwerkzeug ist, bietet GitHub eine webbasierte grafische Schnittstelle. Es bietet auch eine Zugriffskontrolle und verschiedene Funktionen für die Zusammenarbeit, wie z.B. ein Wiki und grundlegende Aufgabenverwaltungstools für jedes Projekt.
+### 1.1 Beschreibung
+Für die Durchführung meiner LB02 habe ich folgende Dienste genützt:
 
-Die Hauptfunktionalität von GitHub ist die "Gabelung" - das Kopieren eines Repositorys von einem Benutzerkonto auf ein anderes. Dies ermöglicht es Ihnen, ein Projekt, auf das Sie keinen Schreibzugriff haben, unter Ihrem eigenen Konto zu ändern. Wenn Sie Änderungen vornehmen, die Sie freigeben möchten, können Sie eine Benachrichtigung, die als "Pull-Anfrage" bezeichnet wird, an den ursprünglichen Besitzer senden. Dieser kann dann mit einem Klick auf eine Schaltfläche die in Ihrem Repo gefundenen Änderungen mit dem ursprünglichen Repo zusammenführen.
+- GitHub.com
+- GitHub Desktop
+- Git-Client (SSH-Key)
+- Vagrant
+- VirtualBox
+- Visual Studio Code
 
 
-### 1.2 Github Client
+### 1.2 Netzwerkplan
 
-Ein Git-Client ist eine Software zur Arbeit mit Git-Repositories, sowohl remote als auch lokal.
-
-Mit Repository meine ich entweder einen lokalen Code-Speicher, mit dem Sie zusammen mit seinen Versionen, Tags und Zweigen arbeiten, oder einen entfernten Code-Speicher, aus dem ein Team von Entwicklern Änderungen schiebt und abzieht.
-
-Das Standard-"git"-Softwarepaket ist der offensichtlichste Client. Die meisten git ui-Clients benutzen es als ihr zugrundeliegendes Werkzeug, um mit git-Repositories zu arbeiten.
+![Netzwerkplan LB02](Netzwerkplan_M300.png)
 
 ### 1.3 Virtual Box
 
-VirtualBox ist eine Open-Source-Software zur Virtualisierung der x86-Computerarchitektur. Sie fungiert als Hypervisor und erstellt eine VM (virtuelle Maschine), in der der Benutzer ein anderes Betriebssystem ausführen kann.
+Damit ich mein Projekt realisieren konnte musste ich VirtualBox installieren für die Virtualisierung einer Maschine, welche mithilfe von Vagrant erstellt werden würde. VirtualBox konnte ich ganz einfach über https://www.virtualbox.org/ herunterladen und dann mit einem GUI installieren. Nach der Installation musste ich keine weitere Schritte in VirtualBox vornehmen, da sich Vagrant um alles kümmerte.
 
 ### 1.4 Vagrant
 
-Vagrant ist eine freie Ruby-Andwendung, welche es das Erstellen und Verwalten virtueller Maschinen ermöglicht. Einfache Softwareverteilung z.B. in der Software- und Webentwicklung ist eine der Stärken von Vagrant. Es dient ebenfalls als Wrapper zwischen Virtualisierungssoftware wie z.B. Virtual Box, VMWare, usw.
+Ich habe gelernt, dass mithilfe von Vagrant die Installation und erst Konfiguration von VMs sehr einfach und unkompliziert funktionieren kann. Damit ich Vagrant nutzen konnte habe ich es von https://www.vagrantup.com/ heruntergeladen und auf meinem Client installiert. Nachdem die Installation abgeschlossen war konnte man bereits loslegen. Ich habe in mein Verzeichnis gewechselt, welches sich unter C:\Users\Ricardo\M300 befindet. Dieses Verzeichnis ist ein "Clone" meines GitHub-Repository. 
+
+Mit Vagrant konnte ich dann eine VM erstellen, konfigurieren und starten.
+
+```
+$ vagrant init ubuntu/xenial64        #Vagrantfile erzeugen
+$ vagrant up --provider virtualbox    #Virtuelle Maschine erstellen & starten
+```
 
 ### 1.5 Visual Studio Code
 
