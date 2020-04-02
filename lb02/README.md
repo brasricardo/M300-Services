@@ -73,6 +73,126 @@ Damit ich mein Projekt realisieren konnte musste ich VirtualBox installieren fü
 
 Visual Studio Code ermöglicht es mir mein Vagrant- oder die README-Files ganz einfach über einen Code-Editor übersichtlich und gut zu gestalten und schreiben. 
 
+## 2. Dokumentation
+
+### 2.1 Vagrantfile
+
+*Database*
+```
+# Every Vagrant virtual environment requires a box to build off of.
+  config.vm.define "database" do |db|
+    db.vm.box = "ubuntu/xenial64"
+	db.vm.provider "virtualbox" do |vb|
+	  vb.memory = "512"  
+	end
+    db.vm.hostname = "db01"
+    db.vm.network "private_network", ip: "192.168.55.100"
+    # MySQL Port nur im Private Network sichtbar
+	# db.vm.network "forwarded_port", guest:3306, host:3306, auto_correct: false
+	#path: "db.sh"
+	  db.vm.provision "shell", inline: <<-SHELL
+	  sudo apt update
+	  sudo apt upgrade
+
+		# ---------------------------------------
+		#          MySQL Setup
+		# ---------------------------------------
+
+		# Setting MySQL root user password root/root
+		sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password Admin1234'
+		sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password Admin1234'
+
+
+		# Installing packages
+		sudo apt-get install -y mysql-server mysql-client
+
+		# Allow External Connections on your MySQL Service
+		sudo sed -i -e 's/bind-addres/#bind-address/g' /etc/mysql/mysql.conf.d/mysqld.cnf
+		sudo sed -i -e 's/skip-external-locking/#skip-external-locking/g' /etc/mysql/mysql.conf.d/mysqld.cnf
+		mysql -u root -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Admin1234' WITH GRANT OPTIONS; CREATE USER 'database'@'%' IDENTIFIED BY 'DBuser1234'; GRANT SELECT ON *.* TO 'database'@'%' IDENTIFIED BY 'DBuser1234; FLUSH privileges;"
+		sudo service mysql restart
+		# create client database
+		mysql -u root -pAdmin1234 -e "CREATE DATABASE Test;"
+
+
+		# Firewall configuration
+		sudo ufw -f enable
+		sudo ufw deny out to any
+		sudo ufw allow from 192.168.55.1 to any port 22
+		sudo ufw allow from 192.168.55.101 to any port 3306
+	SHELL
+  end
+```
+
+
+*Webserver*
+```
+config.vm.define "web" do |web|
+    web.vm.box = "ubuntu/xenial64"
+    web.vm.hostname = "web01"
+    web.vm.network "private_network", ip:"192.168.55.101"
+	web.vm.network "forwarded_port", guest:80, host:8080, auto_correct: true
+	web.vm.provider "virtualbox" do |vb|
+	  vb.memory = "512"  
+	end
+	# Braucht es hier nicht, weil Standardseite    
+  	# web.vm.synced_folder ".", "/var/www/html"  
+  	# Wird nur in 1. VM gemountet, Fehler?
+  	web.vm.synced_folder ".", "/vagrant"  	
+	web.vm.provision "shell", inline: <<-SHELL
+		sudo apt-get update
+		sudo apt-get -y install debconf-utils apache2 nmap
+		sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password admin'
+		sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password admin'
+		sudo apt-get -y install php libapache2-mod-php php-curl php-cli php-mysql php-gd mysql-client  
+		
+		#SSL-Certificate
+		sudo mkdir /etc/apache2/ssl
+		cd /etc/apache2/ssl
+
+		sudo openssl genrsa -out apache.key 4096
+		sudo openssl req -new -x509 -key apache.key -out apache.cert -days 3650 -subj /CN=example.com
+
+		sudo sed -i '14iSSLEngine on' /etc/apache2/sites-enabled/000-default.conf
+		sudo sed -i '15iSSLCertificateFile /etc/apache2/ssl/apache.cert' /etc/apache2/sites-enabled/000-default.conf
+		sudo sed -i '16iSSLCertificateKeyFile /etc/apache2/ssl/apache.key' /etc/apache2/sites-enabled/000-default.conf
+
+		sudo sed -i '1s/.*/<VirtualHost *:433>/' /etc/apache2/sites-enabled/000-default.conf
+
+		sudo sed -i '1i<VirtualHost *:80>' /etc/apache2/sites-enabled/000-default.conf
+		sudo sed -i '2iServerName example.com' /etc/apache2/sites-enabled/000-default.conf
+		sudo sed -i '3iDocumentRoot /var/www/html' /etc/apache2/sites-enabled/000-default.conf
+		sudo sed -i '4iRedirect permanent / https://192.168.55.101/' /etc/apache2/sites-enabled/000-default.conf
+		sudo sed -i '5i</VirtualHost>' /etc/apache2/sites-enabled/000-default.conf
+
+		sudo a2enmod ssl
+		sudo service apache2 restart
+
+		# Firewall configuration
+		sudo ufw -f enable
+		sudo ufw deny out to any
+		sudo ufw allow 80/tcp
+		sudo ufw allow from 192.168.55.1 to any port 22
+
+		# Admininer SQL UI 
+		sudo mkdir /usr/share/adminer
+		sudo wget "http://www.adminer.org/latest.php" -O /usr/share/adminer/latest.php
+		sudo ln -s /usr/share/adminer/latest.php /usr/share/adminer/adminer.php
+		echo "Alias /adminer.php /usr/share/adminer/adminer.php" | sudo tee /etc/apache2/conf-available/adminer.conf
+		sudo a2enconf adminer.conf 
+		sudo a2enmod cgi
+		sudo cp /vagrant/rest /vagrant/restsql /usr/lib/cgi-bin/ && sudo chown www-data /usr/lib/cgi-bin/rest* && sudo chmod 755 /usr/lib/cgi-bin/rest*
+		sudo mkdir -p  /var/www/html/data && sudo chown www-data:www-data /var/www/html/data 
+		sudo service apache2 restart 
+	  echo '127.0.0.1 localhost web01\n192.168.55.100 db01' > /etc/hosts
+SHELL
+	end  
+ end
+```
+### 2.2 Sicherheihtsmassnahmen
+
+### 2.3 Testdokumentation
+
 ## 3. Leistungsbeurteilung 01 (LB01)
 Diese Beurteilung beinhaltet keine Dokumente, da es sich hier um eine Theorieprüfung handelt.
 
