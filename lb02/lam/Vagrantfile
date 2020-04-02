@@ -49,6 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		sudo ufw -f enable
 		sudo ufw deny out to any
 		sudo ufw allow from 192.168.55.1 to any port 22
+		sudo ufw allow from 192.168.55.101 to any port 22
 		sudo ufw allow from 192.168.55.101 to any port 3306
 	SHELL
   end
@@ -98,6 +99,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		sudo ufw -f enable
 		sudo ufw deny out to any
 		sudo ufw allow 80/tcp
+		sudo ufw allow from 192.168.55.100 to any port 22
 		sudo ufw allow from 192.168.55.1 to any port 22
 
 		# Admininer SQL UI 

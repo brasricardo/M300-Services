@@ -119,10 +119,13 @@ Visual Studio Code ermöglicht es mir mein Vagrant- oder die README-Files ganz e
 		sudo ufw -f enable
 		sudo ufw deny out to any
 		sudo ufw allow from 192.168.55.1 to any port 22
+        sudo ufw allow from 192.168.55.101 to any port 22
 		sudo ufw allow from 192.168.55.101 to any port 3306
 	SHELL
   end
 ```
+
+Mit diesem Script wurde die Erstellung und die Konfiguration von einem MySQL-Server und Firewalleinstellungen durchgeführt. Für den Databaseserver wurde ebenfalls noch ein SSH-Key erstellt, damit dies eine sichere Verbindung zum Webserver aufbauen, dies wurde jedoch manuell durchgeführt (Weiteres kann unter Sicherheitsmassnahmen gefunden werden). Am Anfang des Scriptes wurden ein paar VM-Komponenten definiert, wie z.B. Name der VM, was für ein Betriebssystem, wie viel memory, IP-Adresse und forwarded Ports. Im nächsten Teil wird noch gesorgt, dass das Betriebssystem auf dem neustem Stand ist bevor die Installation und Konfigruation durchgefürht wird. Nachdem das System auf dem neustem Stand ist wird noch das Root Passwort auf "Admin1234" definiert und danach kann die Installation beginnen. Nach der Installation werden noch ein paar Einträge in der Konfig Datei von MySQL geändert, damit man eine Verbindung von extern zum Server aufbauen kann. Zudem wird dem "root" alle Rechte von überall gegeben und ein zusätzlicher user "database" wird erstellt mit nur leserechte. Danach wird der ganze Service neugestartet und eine "Test"-DB wird erstellt. Zum Schluss wird noch die Firewall konfiguriert, damit eine gewisse Sicherheit gegeben ist (Weitere Infromation/ Dokumentation unter Sicherheitsmassnahmen).
 
 
 *Webserver*
@@ -172,6 +175,7 @@ config.vm.define "web" do |web|
 		sudo ufw -f enable
 		sudo ufw deny out to any
 		sudo ufw allow 80/tcp
+        sudo ufw allow from 192.168.55.100 to any port 22
 		sudo ufw allow from 192.168.55.1 to any port 22
 
 		# Admininer SQL UI 
@@ -189,6 +193,8 @@ SHELL
 	end  
  end
 ```
+Mit diesem Script wurde die Erstellung und die Konfiguration von einem MySQL-Server und Firewalleinstellungen durchgeführt. Für den Databaseserver wurde ebenfalls noch ein SSH-Key erstellt, damit dies eine sichere Verbindung zum Webserver aufbauen, dies wurde jedoch manuell durchgeführt (Weiteres kann unter Sicherheitsmassnahmen gefunden werden). Am Anfang des Scriptes wurden ein paar VM-Komponenten definiert, wie z.B. Name der VM, was für ein Betriebssystem, wie viel memory, IP-Adresse und forwarded Ports. Im nächsten Teil wird noch gesorgt, dass das Betriebssystem auf dem neustem Stand ist bevor die Installation und Konfigruation durchgefürht wird. Nachdem das System auf dem neustem Stand ist wird noch das Root Passwort auf "Admin1234" definiert und danach kann die Installation beginnen. Nach der Installation werden noch ein paar Einträge in der Konfig Datei von MySQL geändert, damit man eine Verbindung von extern zum Server aufbauen kann. Zudem wird dem "root" alle Rechte von überall gegeben und ein zusätzlicher user "database" wird erstellt mit nur leserechte. Danach wird der ganze Service neugestartet und eine "Test"-DB wird erstellt. Zum Schluss wird noch die Firewall konfiguriert, damit eine gewisse Sicherheit gegeben ist (Weitere Infromation/ Dokumentation unter Sicherheitsmassnahmen).
+
 ### 2.2 Sicherheihtsmassnahmen
 
 ### 2.3 Testdokumentation
