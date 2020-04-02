@@ -144,9 +144,8 @@ config.vm.define "web" do |web|
   	web.vm.synced_folder ".", "/vagrant"  	
 	web.vm.provision "shell", inline: <<-SHELL
 		sudo apt-get update
+        sudo apt -y upgrade
 		sudo apt-get -y install debconf-utils apache2 nmap
-		sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password admin'
-		sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password admin'
 		sudo apt-get -y install php libapache2-mod-php php-curl php-cli php-mysql php-gd mysql-client  
 		
 		#SSL-Certificate
@@ -193,9 +192,17 @@ SHELL
 	end  
  end
 ```
-Mit diesem Script wurde die Erstellung und die Konfiguration von einem MySQL-Server und Firewalleinstellungen durchgeführt. Für den Databaseserver wurde ebenfalls noch ein SSH-Key erstellt, damit dies eine sichere Verbindung zum Webserver aufbauen, dies wurde jedoch manuell durchgeführt (Weiteres kann unter Sicherheitsmassnahmen gefunden werden). Am Anfang des Scriptes wurden ein paar VM-Komponenten definiert, wie z.B. Name der VM, was für ein Betriebssystem, wie viel memory, IP-Adresse und forwarded Ports. Im nächsten Teil wird noch gesorgt, dass das Betriebssystem auf dem neustem Stand ist bevor die Installation und Konfigruation durchgefürht wird. Nachdem das System auf dem neustem Stand ist wird noch das Root Passwort auf "Admin1234" definiert und danach kann die Installation beginnen. Nach der Installation werden noch ein paar Einträge in der Konfig Datei von MySQL geändert, damit man eine Verbindung von extern zum Server aufbauen kann. Zudem wird dem "root" alle Rechte von überall gegeben und ein zusätzlicher user "database" wird erstellt mit nur leserechte. Danach wird der ganze Service neugestartet und eine "Test"-DB wird erstellt. Zum Schluss wird noch die Firewall konfiguriert, damit eine gewisse Sicherheit gegeben ist (Weitere Infromation/ Dokumentation unter Sicherheitsmassnahmen).
+Mit diesem Script wurde die Erstellung und die Konfiguration von einem Apache Webserver mit Adminer und Firewalleinstellungen durchgeführt. Da beim Databaseserver ein SSH-Key generiert wurde wird der public key hier im Webserver eingelesen, damit die sichere Verbindung garantiert werden kann, dies aber ebenfalls manuell (Weiteres kann unter Sicherheitsmassnahmen gefunden werden). Am Anfang des Scriptes wurden ein paar VM-Komponenten definiert, wie z.B. Name der VM, was für ein Betriebssystem, wie viel memory, IP-Adresse und forwarded Ports. Im nächsten Teil wird noch gesorgt, dass das Betriebssystem auf dem neustem Stand ist bevor die Installation und Konfigruation durchgefürht wird. Nachdem das System auf dem neustem Stand werden noch ein paar Sachen für den Apache-Dienst installiert, weie z.B. php. Nach dieser Installation geht es weiter mit dem absichern der Verbindung zum Webserver mithilfe von einem SSL-Zertifikat. Es wird ein Ordner erstellt für die Zertifikate, danach werden diese generiert und sobald diese generiert sind werden noch die Konfigurationsdatei des apache bearbeitet. In dieser Datei wird jeglich der Ort der Zertifikate bestummen und eine Weiterleitung von HTTP zu HTTPS wird noch gemacht. Zum Schluss der Konfiguration des Zertifikates wird noch ein SSL Apachemodul aktiviert und der Apache-Dienst wird neugestartet. Als nächstes wird noch die Firewall konfiguriert, damit eine gewisse Sicherheit gegeben ist (Weitere Infromation/ Dokumentation unter Sicherheitsmassnahmen). Im letzten Schritt wird das Datenbankverwaltungstool Adminer installiert. Dieser wird mithilfe des wget-Befehles heruntergeladen und mit den darauf folgenden Schritten installiert. Am Schluss werden noch die richtigen Rechte den entsprechenden Dateien verteilt und dann wird der Apache-Dienst nochmals neugestartet.
 
 ### 2.2 Sicherheihtsmassnahmen
+
+#### 2.2.1 MySQL-User
+
+#### 2.2.2 Firewall Database
+
+#### 2.2.3 SSL-Zertifikat (HTTPS)
+
+#### 2.2.4 Firewall Webserver
 
 ### 2.3 Testdokumentation
 
