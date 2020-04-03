@@ -174,6 +174,7 @@ config.vm.define "web" do |web|
 		sudo ufw -f enable
 		sudo ufw deny out to any
 		sudo ufw allow 80/tcp
+        sudo ufw allow 433/tcp
         sudo ufw allow from 192.168.55.100 to any port 22
 		sudo ufw allow from 192.168.55.1 to any port 22
 
@@ -196,13 +197,71 @@ Mit diesem Script wurde die Erstellung und die Konfiguration von einem Apache We
 
 ### 2.2 Sicherheihtsmassnahmen
 
-#### 2.2.1 MySQL-User
+#### 2.2.1 Benutzerrechte MySQL-User
+
+Um die Sicherheit des MySQL-Server ein wenig zu erhöhen wurde ein weiterer User erstellt, welcher nur über lese Rechte verfügt. Damit will man sicherstellen, dass nicht jeder Schreibrechte oder Vollzugriff erhält, wenn er es nicht für seine "Arbeit" braucht.
 
 #### 2.2.2 Firewall Database
 
+Die Firewall der Database enthält folgende vier Regeln:
+
+```
+sudo ufw deny out to any
+		
+```
+Diese Regel blockt den ganzen Verkehr nach aussen, da der Databaseserver keine Internetverbindung braucht und nur als Databaseserver gebraucht wird, braucht er nicht viele Ausnahmenregel. Sondern nur die folgenden drei:
+
+```
+sudo ufw allow from 192.168.55.1 to any port 22
+        
+```
+
+Diese Regel ermöglicht es dem Host (Client) mit der IP-Adresse 192.167.55.1 eine SSH-Verbindung aufzubauen.
+
+```
+sudo ufw allow from 192.168.55.101 to any port 22
+		
+```
+
+Diese Regel ermöglicht es dem Webserver mit der IP-Adresse 192.167.55.101 eine SSH-Verbindung aufzubauen.
+
+```
+sudo ufw allow from 192.168.55.101 to any port 3306
+```
+
+Diese Regel ermöglicht es dem Webserver mit der IP-Adresse 192.167.55.101 eine Verbindung zum SQL-Port aufzubauen, damit er die Daten lesen kann und diese dann auf dem Webserver anzeigen kann.
+
 #### 2.2.3 SSL-Zertifikat (HTTPS)
 
+Damit die Verbindung zum Webserver auch den heutigen Anforderungen entspricht wurde ein SSL-Zertifikat erstellt, damit eine sichere HTTPS-Verbindung aufgebaut werden kann. Zum HTTP-Verbindungen zu vermeiden, wurde eine Weiterleitung der HTTP-Anfragen auf HTTPS erstellt, somit sind alle Verbindungen zum Server gesichert. Dies ist wichtig, weil Databaseserver eine heikle Sache sind, weil diese wichtige und sensible Daten enthalten können und das sind immer interessante Informationen für Hacker.
+
 #### 2.2.4 Firewall Webserver
+
+Die Firewall des Webservers enthält folgende fünf Regeln:
+
+```
+sudo ufw deny out to any
+		
+```
+Diese Regel blockt den ganzen Verkehr nach aussen, da der Webserver keine Internetverbindung braucht und nur als interner Websever gebraucht wird, braucht er nicht viele Ausnahmenregel. Sondern nur die folgenden drei:
+
+```
+sudo ufw allow 80/tcp       
+```
+
+
+
+```
+sudo ufw allow from 192.168.55.100 to any port 22		
+```
+
+Diese Regel ermöglicht es dem Webserver mit der IP-Adresse 192.167.55.101 eine SSH-Verbindung aufzubauen.
+
+```
+sudo ufw allow from 192.168.55.1 to any port 22
+```
+
+Diese Regel ermöglicht es dem Host (Client) mit der IP-Adresse 192.167.55.1 eine SSH-Verbindung aufzubauen.
 
 ## 3. Testfälle
 
