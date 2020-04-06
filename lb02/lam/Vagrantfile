@@ -39,10 +39,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		# Allow External Connections on your MySQL Service
 		sudo sed -i -e 's/bind-addres/#bind-address/g' /etc/mysql/mysql.conf.d/mysqld.cnf
 		sudo sed -i -e 's/skip-external-locking/#skip-external-locking/g' /etc/mysql/mysql.conf.d/mysqld.cnf
-		mysql -u root -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Admin1234' WITH GRANT OPTIONS; CREATE USER 'database'@'%' IDENTIFIED BY 'DBuser1234'; GRANT SELECT ON *.* TO 'database'@'%' IDENTIFIED BY 'DBuser1234; FLUSH privileges;"
+		mysql -u root -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Admin1234' WITH GRANT OPTION; CREATE USER 'database'@'%' IDENTIFIED BY 'DBuser1234'; GRANT SELECT ON *.* TO 'database'@'%' IDENTIFIED BY 'DBuser1234; FLUSH privileges;"
 		sudo service mysql restart
 		# create client database
-		mysql -u root -pAdmin1234 -e "CREATE DATABASE Test;"
+		mysql -u root -pAdmin1234 -e "CREATE DATABASE test;"
 
 
 		# Firewall configuration
