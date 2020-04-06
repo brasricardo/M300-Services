@@ -249,13 +249,19 @@ Diese Regel blockt den ganzen Verkehr nach aussen, da der Webserver keine Intern
 sudo ufw allow 80/tcp       
 ```
 
+Diese Regel ermöglicht eine HTTP-Verbindung von einem anderem Client.
 
+```
+sudo ufw allow 433/tcp       
+```
+
+Diese Regel ermöglicht eine HTTPS-Verbindung von einem anderem Client.
 
 ```
 sudo ufw allow from 192.168.55.100 to any port 22		
 ```
 
-Diese Regel ermöglicht es dem Webserver mit der IP-Adresse 192.167.55.101 eine SSH-Verbindung aufzubauen.
+Diese Regel ermöglicht es dem Databaseserver mit der IP-Adresse 192.167.55.101 eine SSH-Verbindung aufzubauen.
 
 ```
 sudo ufw allow from 192.168.55.1 to any port 22
