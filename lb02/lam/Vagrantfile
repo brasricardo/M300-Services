@@ -113,6 +113,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		sudo mkdir -p  /var/www/html/data && sudo chown www-data:www-data /var/www/html/data 
 		sudo service apache2 restart 
 	  echo '127.0.0.1 localhost web01\n192.168.55.100 db01' > /etc/hosts
+
+	  sudo service apache2 restart
 SHELL
 	end  
  end

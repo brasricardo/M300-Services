@@ -269,6 +269,15 @@ sudo ufw allow from 192.168.55.1 to any port 22
 
 Diese Regel ermöglicht es dem Host (Client) mit der IP-Adresse 192.167.55.1 eine SSH-Verbindung aufzubauen.
 
-## 3. Testfälle
+## 3. Testprotokoll
+
+| Testfall: 001     | Vagrant installation                                              |
+| ----------------- | ----------------------------------------------------------------- |
+| Ziel:             | Der InfluxDB Server kann mit Vagrant installiert werden.          |
+| Beschreibung:     | Das git clonen und mit vagrant probieren die Influxdb zu deployen |
+| Soll-Wert:        | vagrant wurde installiert und ist erreichbar.                     |
+| Ist-Wert:         | installation ging ohne Problem.                                   |
+| Analyse:          | alles in Ordnung.                                                 |
+| Weitere Schritte: | -                                                                 |
 
 ## 4. Reflexion
