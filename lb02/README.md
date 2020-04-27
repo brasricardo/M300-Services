@@ -272,13 +272,95 @@ Diese Regel ermöglicht es dem Host (Client) mit der IP-Adresse 192.167.55.1 ein
 ## 3. Testprotokoll
 ### 3.1 Databaseserver MySQL-Server
 
-| Testfall: 001     | Databaseserver MySQL-Server installation                                             |
-| ----------------- | -------------------------------------------------------------------------------------|
-| Ziel:             | Der Databaseserver wurde erfolgreich als MySQL-Server installiert.                   |
-| Beschreibung:     | Mit dem Befehl "sudo service mysql-server status" den Status des Servers überprüfen. |
-| Soll-Wert:        | service mysql-server is running.                                                     |
-| Ist-Wert:         | service mysql-server is running.                                                     |
-| Analyse:          | alles in Ordnung.                                                                    |
-| Weitere Schritte: | -                                                                                    |
+| Testfall: 001     | Databaseserver MySQL-Server installation                                                             |
+| ----------------- | -----------------------------------------------------------------------------------------------------|
+| Ziel:             | Der Databaseserver wurde erfolgreich als MySQL-Server installiert.                                   |
+| Beschreibung:     | Mit dem Befehl "sudo service mysql-server status" den Status des Servers überprüfen.                 |
+| Soll-Wert:        | service mysql-server is running.                                                                     |
+| Ist-Wert:         | service mysql-server is running.                                                                     |
+| Analyse:          | alles in Ordnung.                                                                                    |
+| Weitere Schritte: | -                                                                                                    |
+
+| Testfall: 002     | Webserver Apache2 installation                                                                       |
+| ----------------- | -----------------------------------------------------------------------------------------------------|
+| Ziel:             | Der Webserver wurde erfolgreich mit dem Apache2-Dienst installiert.                                  |
+| Beschreibung:     | Mit dem Befehl "sudo service apache2 status" den Status des Servers überprüfen.                      |
+| Soll-Wert:        | service apache2 is running.                                                                          |
+| Ist-Wert:         | service apache2 is running.                                                                          |
+| Analyse:          | alles in Ordnung.                                                                                    |
+| Weitere Schritte: | -                                                                                                    |
+
+| Testfall: 003     | Webserver Adminer installation                                                                       |
+| ----------------- | -----------------------------------------------------------------------------------------------------|
+| Ziel:             | Der Webserver wurde erfolgreich mit dem Adminer-Dienst installiert.                                  |
+| Beschreibung:     | Mit dem Befehl "ll /etc/apache2/conf-available/" kann man überprüfen, ob adminer.conf vorhanden ist. |
+| Soll-Wert:        | Adminer.conf sollte in der Auflistung angezeigt werden.                                              |
+| Ist-Wert:         | Adminer.conf wird in der Auflistung angezeigt.                                                       |
+| Analyse:          | alles in Ordnung.                                                                                    |
+| Weitere Schritte: | -                                                                                                    |
+
+| Testfall: 004     | Databaseserver Mysql-Benutzer                                                                        |
+| ----------------- | -----------------------------------------------------------------------------------------------------|
+| Ziel:             | Die Benutzer root und database wurden erstellt und verfügen über die richtigen Berechtigungen.       |
+| Beschreibung:     | Mit dem Befehl "select * from mysql.user;" können die erstellte Benutzer angezeigt werden.           |
+| Soll-Wert:        | root und database sollen in der Benutzerliste angezeigt werden.                                      |
+| Ist-Wert:         | root und database werden in der Benutzerliste angezeigt.                                             |
+| Analyse:          | alles in Ordnung.                                                                                    |
+| Weitere Schritte: | -                                                                                                    |
+
+| Testfall: 005     | Databaseserver Firewallkonfiguration                                                                 |
+| ----------------- | -----------------------------------------------------------------------------------------------------|
+| Ziel:             | Die Firewallrules wurden gemäss Vagrantfile und Dokumentation erstellt.                              |
+| Beschreibung:     | Mit dem Befehl "sudo ufw status" können die erstellte Firewallrules angezeigt werden.                |
+| Soll-Wert:        | Firewallrules sollen dem Vagrantfile und der Dokumentation entsprechen.                              |
+| Ist-Wert:         | Firewallrules entsprechen dem Vagrantfile und der Dokumentation.                                     |
+| Analyse:          | alles in Ordnung.                                                                                    |
+| Weitere Schritte: | -                                                                                                    |
+
+| Testfall: 006     | Databaseserver Firewallkonfiguration                                                                 |
+| ----------------- | -----------------------------------------------------------------------------------------------------|
+| Ziel:             | Die Firewallrules wurden gemäss Vagrantfile und Dokumentation erstellt.                              |
+| Beschreibung:     | Mit dem Befehl "sudo ufw status" können die erstellte Firewallrules angezeigt werden.                |
+| Soll-Wert:        | Firewallrules sollen dem Vagrantfile und der Dokumentation entsprechen.                              |
+| Ist-Wert:         | Firewallrules entsprechen dem Vagrantfile und der Dokumentation.                                     |
+| Analyse:          | alles in Ordnung.                                                                                    |
+| Weitere Schritte: | -                                                                                                    |
+
+| Testfall: 007     | Webserver Firewallkonfiguration                                                                      |
+| ----------------- | -----------------------------------------------------------------------------------------------------|
+| Ziel:             | Die Firewallrules wurden gemäss Vagrantfile und Dokumentation erstellt.                              |
+| Beschreibung:     | Mit dem Befehl "sudo ufw status" können die erstellte Firewallrules angezeigt werden.                |
+| Soll-Wert:        | Firewallrules sollen dem Vagrantfile und der Dokumentation entsprechen.                              |
+| Ist-Wert:         | Firewallrules entsprechen dem Vagrantfile und der Dokumentation.                                     |
+| Analyse:          | alles in Ordnung.                                                                                    |
+| Weitere Schritte: | -                                                                                                    |
+
+| Testfall: 008     | Verbindung von Host zu Webserver                                                                     |
+| ----------------- | -----------------------------------------------------------------------------------------------------|
+| Ziel:             | Mit dem Hostbrowser kann die default- und adminer.php-Seite des Webservers geöffnet werden.          |
+| Beschreibung:     | Mithilfe eines Browser auf dem Host und der Linkadresse http://192.168.55.101/ & -/adminer.php testen|
+| Soll-Wert:        | Mit dem Hostbrowser soll die default- und adminer.php-Seite des Webservers geöffnet werden können.   |
+| Ist-Wert:         | Mit dem Hostbrowser kann die default- und adminer.php-Seite des Webservers geöffnet werden.          |
+| Analyse:          | alles in Ordnung.                                                                                    |
+| Weitere Schritte: | -                                                                                                    |
+
+| Testfall: 009     | Adminer Login                                                                                        |
+| ----------------- | -----------------------------------------------------------------------------------------------------|
+| Ziel:             | Mit dem Hostbrowser kann unter http://192.168.55.101/adminer.php mit den 2 Users angemeldet werden.  |
+| Beschreibung:     | Mithilfe eines Browser und der Linkadresse http://192.168.55.101/adminer.php mit den Users testen.   |
+| Soll-Wert:        | Mit dem Hostbrowser und den beiden Users soll der Login erfolgreich sein.                            |
+| Ist-Wert:         | Mit dem Hostbrowser und den beiden Users kann der Login erfolgreich durchgeführt werden.             |
+| Analyse:          | alles in Ordnung.                                                                                    |
+| Weitere Schritte: | -                                                                                                    |
+
+| Testfall: 010     | Adminer Tabelle erstellung                                                                           |
+| ----------------- | -----------------------------------------------------------------------------------------------------|
+| Ziel:             | Auf der Adminer-Seite kann mit dem root User Tabellen erstellt werden und mit database nicht.        |
+| Beschreibung:     | Mithilfe eines Browser auf dem Host und der Linkadresse http://192.168.55.101/ & -/adminer.php testen|
+| Soll-Wert:        | Auf der Adminer-Seite soll der root User Tabellen erstellen können und der database User nicht.      |
+| Ist-Wert:         | Auf der Adminer-Seite kann der root User Tabellen erstellen und der database User nicht.             |
+| Analyse:          | alles in Ordnung.                                                                                    |
+| Weitere Schritte: | -                                                                                                    |
 
 ## 4. Reflexion
+Diese LB02 war eine lehrreiche und spannende Erfahrung. Ich konnte dank diesem Projekt Github und vorallem Vagrant sehr gut kennenlernen. Obwohl mri Github zuvor bekannt war kannte ich mich leider nicht aus. Dafür bin ich au dankbar, dass wir Github brauchen mussten, da ich etwas neues und sinnvolles lernen konnte. Mithilfe von Github konnte ich immer einen guten Überblick behalten und egal mit welchem Gerät jederzeit anschauen und bearbeieten. Dies vorallem, weil man alle Dokumente an einem Ort hatte und noch dazu eine neue Art von Schreiben kennenlernen durfte (Markdown). Ich hatte während des ganzen Projektes fast keine Probleme, bis auf zwischendurch wo die VM nicht mehr funktionieren wollte und ich das Vagrantfile nochmals ausführen musste und wieder alles ein wenig testen. Nach diesem Projekt kann ich zum Glück vieles brauchen und in Zukunft anwenden, da mit Vagrant viele VMs einfach und schnell erstellt werden können und man so weniger komplexe und einen kleineren Zeitaufwand hat. Und Github werde ich in Zukunft mehrmals wiederverwenden, da ich jetzt weiss wie nützlich und hilfreich dieses Tool sein kann.
